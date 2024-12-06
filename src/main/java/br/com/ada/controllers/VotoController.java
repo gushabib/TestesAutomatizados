@@ -1,6 +1,7 @@
 package br.com.ada.controllers;
 
 import br.com.ada.entities.Voto;
+import br.com.ada.service.ListaVotoResponse;
 import br.com.ada.service.VotoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class VotoController {
 
 
     @GetMapping("/votos")
-    public ResponseEntity<List<Voto>> obterTodosOsVotos() {
+    public ResponseEntity<ListaVotoResponse> obterTodosOsVotos() {
         return ResponseEntity.ok(votoService.obterTodosOsVotos());
     }
 

@@ -1,6 +1,7 @@
 package br.com.ada.integracao;
 
 import br.com.ada.entities.Voto;
+import br.com.ada.service.ListaVotoResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,14 +96,15 @@ class VotoIntegracao {
             ResponseEntity<String> ResponseEntity = restTemplate.postForEntity("/voto", voto, String.class);
         }
 
-        ResponseEntity<List> retornoVotos = restTemplate.getForEntity("/votos", List.class);
+        ResponseEntity<ListaVotoResponse> retornoVotos = restTemplate.getForEntity("/votos", ListaVotoResponse.class);
 
         System.out.println(retornoVotos.getBody());
 
-        List<Voto> body =(List<Voto>) retornoVotos.getBody();
+        assertNotNull(retornoVotos.getBody());
 
-        //assertEquals(votos[0].getNome(), body.get(0).getNome());
-        //não consegui fazer retornar somente o nome
+        List<Voto> body =retornoVotos.getBody().listaVotos();
+
+        assertEquals(votos[0].getNome(), body.get(0).getNome());
     }
 
 

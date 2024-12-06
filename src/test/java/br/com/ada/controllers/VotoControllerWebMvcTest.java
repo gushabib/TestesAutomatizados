@@ -1,6 +1,7 @@
 package br.com.ada.controllers;
 
 import br.com.ada.entities.Voto;
+import br.com.ada.service.ListaVotoResponse;
 import br.com.ada.service.VotoService;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
@@ -92,7 +93,7 @@ class VotoControllerWebMvcTest {
         voto2.setNumeroCandidato(9991L);
 
         List<Voto> listaDeVotos = List.of(voto, voto1, voto2);
-        when(votoService.obterTodosOsVotos()).thenReturn(listaDeVotos);
+        when(votoService.obterTodosOsVotos()).thenReturn(new ListaVotoResponse(listaDeVotos));
 
         mockMvc.perform(get("/votos")
                         .contentType(MediaType.APPLICATION_JSON))

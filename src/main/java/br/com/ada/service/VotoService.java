@@ -35,10 +35,8 @@ public class VotoService {
         return votoOptional.orElseThrow(() -> new RuntimeException("Voto nao foi encontrado"));
     }
 
-    public List<Voto> obterTodosOsVotos() {
-
-        return votoRepository.findAll();
-
+    public ListaVotoResponse obterTodosOsVotos() {
+        return new ListaVotoResponse(votoRepository.findAll());
     }
 
     public Voto atualizarVoto(Long id, Voto votoRequest) {
